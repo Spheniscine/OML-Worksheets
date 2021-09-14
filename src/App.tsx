@@ -1,16 +1,32 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import { VerticalAdditionPage } from './components/VerticalAddition';
-
 
 
 
 function App() {
     return (
-        <>
-            <VerticalAdditionPage />
-        </>
+        <Router>
+            <Navbar />
+            <Switch>
+                {
+                    // SidebarData.map((item) => {
+                    //     return (
+                    //         <Route path={item.path} exact>
+                    //             <DemoContent title={item.title} />
+                    //         </Route>
+                    //     )
+                    // })
+                }
+
+                <Route path="/" exact>
+                    <VerticalAdditionPage />
+                </Route>
+            </Switch>
+        </Router>
     );
 }
 
