@@ -1,22 +1,22 @@
 import React, { PureComponent, createRef } from 'react';
 import { MathJaxContext } from './MathJax';
 
-enum MathDisplayType {
+enum TexDisplayKind {
     Inline,
     Display,
     DisplayStyle
 }
 
-interface MathProps {
+interface TexProps {
     tex: string,
-    displayType: MathDisplayType
+    displayType: TexDisplayKind
 }
 
-export class Tex extends PureComponent<MathProps, {}> {
+export class Tex extends PureComponent<TexProps, {}> {
     static DOM_CLASS = "math"
 
     static defaultProps = {
-        displayType: MathDisplayType.DisplayStyle
+        displayType: TexDisplayKind.DisplayStyle
     }
 
     private jax = new MathJaxContext()
@@ -33,10 +33,10 @@ export class Tex extends PureComponent<MathProps, {}> {
         this.jax.use ((mathJax) => {
             mathJax.typesetClear([element])
             let text = ""
-            text += this.props.displayType === MathDisplayType.Display ? "\\[" : "\\("
-            if(this.props.displayType === MathDisplayType.DisplayStyle) text += "\\displaystyle "
+            text += this.props.displayType === TexDisplayKind.Display ? "\\[" : "\\("
+            if(this.props.displayType === TexDisplayKind.DisplayStyle) text += "\\displaystyle "
             text += this.props.tex
-            text += this.props.displayType === MathDisplayType.Display ? "\\]" : "\\)"
+            text += this.props.displayType === TexDisplayKind.Display ? "\\]" : "\\)"
             element.innerHTML = ""
             element.appendChild(document.createTextNode(text))
             mathJax.typeset([element])
