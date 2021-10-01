@@ -4,6 +4,7 @@ import './App.css';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import { VerticalAdditionPage } from './components/VerticalAddition';
+import { AdditionBelow10Page } from './pages/AdditionBelow10';
 
 
 
@@ -23,7 +24,7 @@ function App() {
                 }
 
                 <Route path="/" exact>
-                    <VerticalAdditionPage />
+                    <AdditionBelow10Page />
                 </Route>
             </Switch>
         </Router>
